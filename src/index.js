@@ -1,28 +1,16 @@
 module.exports = function getZerosCount(number, base) {
   // your implementation
-    var answer = number;
-    var a = getSimpleMultipliers(base);
-    var count = new Array();
-    for (i = 0; i < a.length; i++) {
-        count[i] = 0;
-    }
-    for (i = 2; i <= number; i++) {
-        var b = new Array();
-        b = getSimpleMultipliers(i);
-        for (j = 0; j < b.length; j++) {
-                for (k = 0; k < a.length; k++) {
-                    if (b[j] == a[k]) {
-                        count[k]++;
-                        break;
-                    }
-                } 
-        }
-    }
-    for (l = 0; l < count.length; l++) {
-        answer = Math.min(answer,count[l]);
-    }
-    print(count);
-    return answer;
+  for (var i = 2; i < base; i++) {
+	  if (base%i == 0) {
+	  	base /= i;
+      }
+  }
+  var res = 0;
+  while(number > 0) {
+  number = Math.floor(number/base);
+  res += number;
+  }
+return res;
 }
 
 function getSimpleMultipliers(number){
